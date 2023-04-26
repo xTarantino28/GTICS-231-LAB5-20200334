@@ -13,7 +13,7 @@ public class Departments {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "department_id")
+    @Column(name = "department_id", nullable = false)
     private Integer department_id;
 
     @Column(name = "department_name")

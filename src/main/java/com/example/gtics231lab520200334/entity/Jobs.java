@@ -14,8 +14,8 @@ public class Jobs {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "job_id")
-    private Integer job_id;
+    @Column(name = "job_id", nullable = false)
+    private String job_id;
 
     @Column(name = "job_title")
     private String job_title;

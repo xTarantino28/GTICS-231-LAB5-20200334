@@ -26,17 +26,17 @@
 
   <main>
     <div class="container px-4 py-5">
-      <a class="btn btn-primary mt-4 mb-4" th:href="@{'/empleados/nuevo'}">Nuevo Empleado</a>
-      <form method="post" th:action="@{/shipper/buscar}">
+      <a class="btn btn-primary mt-4 mb-4" th:href="@{/empleados/nuevo}">Nuevo Empleado</a>
+      <form method="post" th:action="@{/empleados/buscar}">
         <div class="mb-3 row">
           <div class="col-10">
-              <input th:value="${textoBuscado}" type="text" class="form-control col-10" placeholder="Buscar por nombre" name="textoBuscar"/>
+              <input th:value="${textoBuscado}" type="text" class="form-control col-10" placeholder="Buscar" name="textoBuscar"/>
           </div>
           <div class="col-1">
             <button class="btn btn-success" type="submit">Buscar</button>
           </div>
           <div class="col-1">
-            <a class="btn btn-secondary" th:href="@{/shipper}">Limpiar</a>
+            <a class="btn btn-secondary" th:href="@{/empleados}">Limpiar</a>
           </div>
         </div>
       </form>
@@ -44,18 +44,23 @@
       <table class="table table-sm">
         <tr>
           <th>#</th>
-          <th>Nombre de la compañia</th>
-          <th>Teléfono</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Puesto</th>
+          <th>Departamento</th>
+          <th>Ciudad</th>
           <th></th>
           <th></th>
         </tr>
-        <tr th:each="shipper, info : ${shipperList}">
+        <tr th:each="empleado, info : ${listaEmpleados}">
           <td th:text="${info.index + 1}"></td>
-          <td th:text="${shipper.companyname}"></td>
-          <td th:text="${shipper.phone}"></td>
-          <td><a class="btn btn-primary" th:href="@{'/shipper/edit' + '?id=' + ${shipper.shipperId}}">Editar</a>
+          <td th:text="${empleado.first_name}"></td>
+          <td th:text="${empleado.jobs.job_title}"></td>
+          <td th:text="${empleado.departments.department_name}"></td>
+          <td th:text="${empleado.departments.locations.city}"></td>
+          <td><a class="btn btn-primary" th:href="@{'/empleados/edit' + '?id=' + ${empleado.employee_id}}">Editar</a>
           </td>
-          <td><a class="btn btn-danger" th:href="@{'/shipper/delete' + '?id=' + ${shipper.shipperId}}">Borrar</a>
+          <td><a class="btn btn-danger" th:href="@{'/empleados/delete' + '?id=' + ${empleado.employee_id}}">Borrar</a>
           </td>
         </tr>
       </table>
