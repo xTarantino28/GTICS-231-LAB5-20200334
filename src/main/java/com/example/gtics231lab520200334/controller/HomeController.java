@@ -20,17 +20,9 @@ public class HomeController {
 
 
 
-
     @GetMapping(value ={"/", "/inicio"})
     public String index(){
         return "inicio";
-    }
-
-    @GetMapping("/empleados")
-    public String inicioEmpleados(Model model){
-        List<Employees> listaEmpleados = employeesRepository.findAll();
-        model.addAttribute("listaEmpleados",listaEmpleados);
-        return "empleados/listar";
     }
 
     @GetMapping("/historial")
