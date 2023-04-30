@@ -26,6 +26,8 @@
 
   <main>
     <div class="container px-4 py-5">
+      <div th:if="${msg != null}" th:text="${msg}" class="alert alert-success" role="alert"></div>
+      <div th:if="${msgDanger != null}" th:text="${msgDanger}" class="alert alert-danger" role="alert"></div>
       <a class="btn btn-primary mt-4 mb-4" th:href="@{/empleados/nuevo}">Nuevo Empleado</a>
       <form method="post" th:action="@{/empleados/buscar}">
         <div class="mb-3 row">
@@ -55,6 +57,7 @@
         <tr th:each="empleado, info : ${listaEmpleados}">
           <td th:text="${info.index + 1}"></td>
           <td th:text="${empleado.first_name}"></td>
+          <td th:text="${empleado.last_name}"></td>
           <td th:text="${empleado.jobs.job_title}"></td>
           <td th:text="${empleado.departments.department_name}"></td>
           <td th:text="${empleado.departments.locations.city}"></td>

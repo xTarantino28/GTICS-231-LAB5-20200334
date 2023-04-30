@@ -30,7 +30,7 @@
   <div class="container px-4 py-5">
 
 
-    <form method="post" th:action="@{/product/save}" class="mt-2">
+    <form method="post" th:action="@{/empleados/guardar}" class="mt-2">
       <div class="mb-3">
         <label for="nombre" class="form-label">Nombre</label>
         <input type="text" class="form-control" name="nombre" id="nombre">
@@ -62,7 +62,7 @@
 
       <div class="mb-3">
         <label for="sueldo" class="form-label">Sueldo</label>
-        <input type="number" class="form-control" name="sueldo" id="sueldo">
+        <input type="text" class="form-control" name="sueldo" id="sueldo">
       </div>
 
 
@@ -86,7 +86,7 @@
 
 
       <a th:href="@{/empleados}" class="btn btn-danger">Cancelar</a>
-      <button type="submit" class="btn btn-primary">Registrar</button>
+      <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
   </div>
 </main>
