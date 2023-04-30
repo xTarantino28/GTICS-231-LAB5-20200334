@@ -21,10 +21,32 @@
   <div th:replace="~{fragmentos/menu.html::menu}"></div>
 
   <div class="row justify-content-center text-center mt-5">
-    <h1> Reportes </h1>
+    <h1> Reportes y Dashboards</h1>
   </div>
 
+  <div class="row justify-content-center text-center mt-5" style="height: 500px">
+    <div class="col-2" style="background-color: lightgrey">
 
+      <div class="row text-center h-50 d-flex align-items-center">
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link " th:href="@{/reportes/salario}" > Salario </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="row text-center h-50 d-flex align-items-center">
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link " th:href="@{/reportes/aumento}">Tentativa Aumento</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-10">
+
+    </div>
+  </div>
 
 
 

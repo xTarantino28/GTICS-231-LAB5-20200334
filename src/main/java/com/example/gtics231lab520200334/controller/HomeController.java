@@ -30,9 +30,6 @@ public class HomeController {
         return "historial/listar";
     }
 
-    @GetMapping("/reportes")
-    public String inicioReportes(){
-        return "reportes/listar";
-    }
+
 
 }

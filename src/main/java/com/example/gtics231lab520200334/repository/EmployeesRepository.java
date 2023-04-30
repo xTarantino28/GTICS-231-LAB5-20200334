@@ -1,6 +1,7 @@
 package com.example.gtics231lab520200334.repository;
 
 
+import com.example.gtics231lab520200334.dto.SalarioDto;
 import com.example.gtics231lab520200334.entity.Employees;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -33,6 +34,10 @@ public interface EmployeesRepository extends JpaRepository<Employees,Integer> {
     @Query(value = "SELECT e.* FROM employees e left join jobs j on j.job_id = e.job_id  left join departments d on d.department_id = e.department_id left join locations lo on lo.location_id = d.location_id WHERE( (lo.city like %?1%) or (e.first_name Like %?1%) or (e.last_name Like %?1%) or (j.job_title Like %?1%) )  AND enabled = 1",
             nativeQuery = true)
     List<Employees> buscarEmpleados(String searchText);
+
+    @Query(value = "SELECT j.job_id, j.job_title, MAX(e.salary) as `maximo`, MIN(e.salary) as `minimo`, SUM(e.salary) as `salario_total`, truncate(AVG(e.salary),2) as `salario_promedio` FROM hr.employees e left join jobs j on j.job_id = e.job_id group by e.job_id",
+            nativeQuery = true)
+    List<SalarioDto> obtenerReporteSalarios();
 
 
 }
