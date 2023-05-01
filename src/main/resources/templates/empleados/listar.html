@@ -61,7 +61,7 @@
           <td th:text="${empleado.jobs.job_title}"></td>
           <td th:text="${empleado.departments.department_name}"></td>
           <td th:text="${empleado.departments.locations.city}"></td>
-          <td><a class="btn btn-primary" th:href="@{'/empleados/edit' + '?id=' + ${empleado.employee_id}}">Editar</a>
+          <td><a class="btn btn-primary" th:href="@{'/empleados/editar' + '?id=' + ${empleado.employee_id}}">Editar</a>
           </td>
           <td><a class="btn btn-danger" th:href="@{'/empleados/delete' + '?id=' + ${empleado.employee_id}}">Borrar</a>
           </td>

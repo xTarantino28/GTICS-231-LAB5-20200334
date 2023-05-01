@@ -20,6 +20,14 @@ public interface EmployeesRepository extends JpaRepository<Employees,Integer> {
             nativeQuery = true)
     void guardarEmpleado(String nombre, String apellido, String email, String contrasena, String puesto_id, double sueldo, int jefe_id, int departamento_id);
 
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE `hr`.`employees` SET first_name = ?1, last_name = ?2, email = ?3 , password = ?4, job_id = ?5,salary = ?6, manager_id = ?7, department_id = ?8 where employee_id = ?9 ",
+            nativeQuery = true)
+    void editarEmpleado(String nombre, String apellido, String email, String contrasena, String puesto_id, double sueldo, int jefe_id, int departamento_id, int employee_id);
+
+
+
 
     @Query(value = "SELECT * FROM `hr`.`employees` WHERE enabled = 1",
             nativeQuery = true)

@@ -75,6 +75,60 @@ public class EmpleadoController {
         return "redirect:/empleados";
     }
 
+
+    @GetMapping("/empleados/editar")
+    public String empleadosEditar(Model model,  @RequestParam("id") int employee_id, RedirectAttributes redirectAttributes){
+
+
+        Optional<Employees> optEmployees = employeesRepository.findById(employee_id);
+
+
+        if (optEmployees.isPresent()) {
+            Employees empleado = optEmployees.get();
+            List<Jobs> listaPuestos = jobsRepository.findAll();
+            List<Departments> listaDepartamentos = departmentsRepository.findAll();
+            List<Employees> listaJefes = employeesRepository.listarEmpleados();
+            model.addAttribute("listaPuestos",listaPuestos);
+            model.addAttribute("listaJefes",listaJefes);
+            model.addAttribute("listaDepartamentos",listaDepartamentos);
+            model.addAttribute("empleado", empleado);
+            return "empleados/editarEmpleado";
+        } else {
+            redirectAttributes.addFlashAttribute("msgDanger","No se encontro el empleado");
+            return "redirect:/empleados";
+        }
+
+
+    }
+
+
+
+    @PostMapping("/empleados/guardarEditar")
+    public String editarEmpleado(
+            @RequestParam("nombre") String nombre,
+            @RequestParam("apellido") String apellido,
+            @RequestParam("email") String email,
+            @RequestParam("contrasena") String contrasena,
+            @RequestParam("puesto") String puesto_id,
+            @RequestParam("sueldo") double sueldo,
+            @RequestParam("jefe") int jefe_id,
+            @RequestParam("departamento") int departamento_id,
+            @RequestParam("id") int employee_id,
+            RedirectAttributes redirectAttributes
+    ){
+
+        employeesRepository.editarEmpleado( nombre,  apellido,  email,  contrasena,  puesto_id,  sueldo,  jefe_id,  departamento_id, employee_id);
+        redirectAttributes.addFlashAttribute("msg","Empleado editado exitosamente");
+        return "redirect:/empleados";
+    }
+
+
+
+
+
+
+
+
     @GetMapping("empleados/delete")
     public String borrarEmpleado(
             @RequestParam("id") int employee_id,
